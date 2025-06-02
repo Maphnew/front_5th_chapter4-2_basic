@@ -59,9 +59,18 @@ function displayProducts(products) {
   });
 }
 
-loadProducts();
+async function initLoadProducts() {
+  await loadProducts();
 
-// Simulate heavy operation. It could be a complex price calculation.
-for (let i = 0; i < 10000000; i++) {
-  const temp = Math.sqrt(i) * Math.sqrt(i);
+  // 웹워커로 무거운 계산 작업 처리
+  const worker = new Worker("/js/worker.js");
+  worker.postMessage("start_calculation");
+  worker.onmessage = function (e) {
+    if (e.data === "calculation_complete") {
+      console.log("Heavy calculation completed in background");
+      worker.terminate(); // 작업 완료 후 워커 종료
+    }
+  };
 }
+
+initLoadProducts();
