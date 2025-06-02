@@ -1,6 +1,9 @@
 
 # 웹사이트 성능 최적화 보고서
 
+## 배포
+https://d2yub9fvqvxz68.cloudfront.net/index.html
+
 ## 📋 프로젝트 개요
 - **목표**: Lighthouse 성능 점수 개선 및 Core Web Vitals 최적화
 - **총 커밋 수**: 11개
